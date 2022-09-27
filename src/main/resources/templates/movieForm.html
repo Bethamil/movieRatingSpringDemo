@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="https://thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Movie Form</title>
+    <link rel="stylesheet" href="/css/styling.css">
+</head>
+<body>
+<h1>add Movie</h1>
+<form th:action="@{/movie/new}" method="post" th:object="${movie}">
+    <input  type="number" hidden  th:field="*{movieId}" />
+    <table >
+        <tr>
+            <td>Titel</td>
+            <td><input type="text" th:field="*{title}" required/></td>
+        </tr>
+        <tr>
+            <td>producer</td>
+            <td><input  type="text" th:field="*{producer}" required/></td>
+
+        </tr>
+    </table>
+    <input class="button" type="submit" value="Save Movie" />
+    <input class="button" type="reset" value="reset" />
+
+</form>
+
+</body>
+</html>

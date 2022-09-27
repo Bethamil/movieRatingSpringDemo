@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="https://thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Movie overview</title>
+    <link rel="stylesheet" href="/css/styling.css">
+</head>
+<body>
+<h1 >Movie overview</h1>
+<input style="margin-bottom: 30px" type="button" class="button" onclick="location.href='/movie/new';" value="Add new movie" />
+<table id="movies">
+    <tr>
+        <th>Titel</th>
+        <th>producer</th>
+        <th>edit</th>
+        <th>delete</th>
+    </tr>
+    <tr th:each="movie : ${allMovies}">
+        <td th:text="${movie.title}"></td>
+        <td th:text="${movie.producer}"></td>
+        <td><a style="color: red" th:href="@{/movie/update/{movieId}(movieId=${movie.movieId})}"> edit </a></td>
+        <td><a style="color: red" th:href="@{/movie/delete/{movieId}(movieId=${movie.movieId})}"> delete </a></td>
+
+    </tr>
+</table>
+</body>
+</html>
