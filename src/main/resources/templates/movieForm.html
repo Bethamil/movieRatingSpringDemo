@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="https://thymeleaf.org">
+<html lang="en" xmlns:th="https://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <title>Movie Form</title>
@@ -16,7 +16,11 @@
         </tr>
         <tr>
             <td>producer</td>
-            <td><input  type="text" th:field="*{producer}" required/></td>
+            <td>
+                <select th:field="*{producers}" multiple>
+                    <option th:each="producer : ${allProducers}" th:value="${producer.producerId}" th:text="${producer.displayName}"></option>
+                </select>
+            </td>
 
         </tr>
     </table>

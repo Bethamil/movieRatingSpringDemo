@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="https://thymeleaf.org">
+<html lang="en" xmlns:th="https://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <title>Movie overview</title>
@@ -18,8 +18,8 @@
     </tr>
     <tr th:each="movie : ${allMovies}">
         <td th:text="${movie.title}"></td>
-        <td th:text="${movie.producer}"></td>
-        <td> <span th:text="${movie.getNumberOfViews()}"></span>              <a style="color: red" th:href="@{/view/new/{movieId}(movieId=${movie.movieId})}"> add View </a></td>
+        <td th:text="${movie.producerDisplayNames}"></td>
+        <td> <span th:text="${movie.getNumberOfViews()}"></span>  <a style="color: red" th:href="@{/view/new/{movieId}(movieId=${movie.movieId})}"> add View </a></td>
         <td><a style="color: red" th:href="@{/movie/update/{movieId}(movieId=${movie.movieId})}"> edit </a></td>
         <td><a style="color: red" th:href="@{/movie/delete/{movieId}(movieId=${movie.movieId})}"> delete </a></td>
 

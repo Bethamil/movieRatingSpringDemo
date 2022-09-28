@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="https://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Producers</title>
+    <link rel="stylesheet" href="/css/styling.css">
+</head>
+<body>
+<h1 >Producers</h1>
+<table>
+    <form th:action="@{/producer/new}" method="post" th:object="${newProducer}">
+        <tr>
+            <input  type="number" hidden  th:field="*{producerId}" />
+            <td><input type="text" th:field="*{firstName}"></td>
+            <td><input type="text" th:field="*{lastName}"></td>
+            <td><input class="button" style="padding: 10px 20px" type="submit" value="save"></td>
+        </tr>
+    </form>
+</table>
+<table id="movies">
+    <tr>
+        <th>Naam</th>
+        <th>edit</th>
+        <th>delete</th>
+    </tr>
+    <tr th:each="producer : ${allProducers}">
+        <td th:text="${producer.displayName}"></td>
+        <td><a style="color: red" th:href="@{/producer/update/{producerId}(producerId=${producer.producerId})}"> edit </a></td>
+        <td><a style="color: red" th:href="@{/producer/delete/{producerId}(producerId=${producer.producerId})}"> delete </a></td>
+
+    </tr>
+
+</table>
+</body>
+</html>

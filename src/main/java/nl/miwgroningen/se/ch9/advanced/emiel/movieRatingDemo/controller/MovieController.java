@@ -2,6 +2,7 @@ package nl.miwgroningen.se.ch9.advanced.emiel.movieRatingDemo.controller;
 
 import nl.miwgroningen.se.ch9.advanced.emiel.movieRatingDemo.model.Movie;
 import nl.miwgroningen.se.ch9.advanced.emiel.movieRatingDemo.repository.MovieRepository;
+import nl.miwgroningen.se.ch9.advanced.emiel.movieRatingDemo.repository.ProducerRepository;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -22,9 +23,11 @@ import java.util.Optional;
 public class MovieController {
 
     private final MovieRepository movieRepository;
+    private final ProducerRepository producerRepository;
 
-    public MovieController(MovieRepository movieRepository) {
+    public MovieController(MovieRepository movieRepository, ProducerRepository producerRepository) {
         this.movieRepository = movieRepository;
+        this.producerRepository = producerRepository;
     }
 
     @GetMapping({"/", "movie/overview"})
@@ -36,6 +39,7 @@ public class MovieController {
     @GetMapping("movie/new")
     protected String showMovieForm(Model model) {
         model.addAttribute("movie", new Movie());
+        model.addAttribute("allProducers", producerRepository.findAll());
         return "movieForm";
     }
 
@@ -55,6 +59,7 @@ public class MovieController {
             return "redirect:overview";
         }
         model.addAttribute("movie", movie.get());
+        model.addAttribute("allProducers", producerRepository.findAll());
 
         return "movieForm";
     }

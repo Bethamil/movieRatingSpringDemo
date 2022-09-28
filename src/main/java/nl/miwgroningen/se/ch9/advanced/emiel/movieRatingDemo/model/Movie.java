@@ -14,7 +14,7 @@ import java.util.List;
 @Entity @Getter @Setter
 public class Movie {
 
-    public String title, producer;
+    public String title;
 
     @Id
     @GeneratedValue
@@ -23,12 +23,23 @@ public class Movie {
     @OneToMany(mappedBy = "movie", cascade = CascadeType.ALL)
     List<View> views;
 
+    @ManyToMany
+    List<Producer> producers;
+
     public int getNumberOfViews() {
         int count = 0;
         for (View view : views) {
             count++;
         }
         return count;
+    }
+
+    public String getProducerDisplayNames() {
+        StringBuilder stringBuilder = new StringBuilder();
+        for (Producer producer : producers) {
+            stringBuilder.append(producer.getDisplayName()).append(", ");
+        }
+        return stringBuilder.toString();
     }
 
 }
