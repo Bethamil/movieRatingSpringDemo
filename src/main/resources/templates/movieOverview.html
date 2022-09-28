@@ -12,12 +12,14 @@
     <tr>
         <th>Titel</th>
         <th>producer</th>
+        <th>Views</th>
         <th>edit</th>
         <th>delete</th>
     </tr>
     <tr th:each="movie : ${allMovies}">
         <td th:text="${movie.title}"></td>
         <td th:text="${movie.producer}"></td>
+        <td> <span th:text="${movie.getNumberOfViews()}"></span>              <a style="color: red" th:href="@{/view/new/{movieId}(movieId=${movie.movieId})}"> add View </a></td>
         <td><a style="color: red" th:href="@{/movie/update/{movieId}(movieId=${movie.movieId})}"> edit </a></td>
         <td><a style="color: red" th:href="@{/movie/delete/{movieId}(movieId=${movie.movieId})}"> delete </a></td>
 
