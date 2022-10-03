@@ -39,6 +39,7 @@ public class Movie {
         for (Producer producer : producers) {
             stringBuilder.append(producer.getDisplayName()).append(", ");
         }
+        stringBuilder.deleteCharAt(stringBuilder.length()-2);
         return stringBuilder.toString();
     }
 

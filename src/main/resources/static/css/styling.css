@@ -3,48 +3,7 @@ body {
     background-color: #282828;
     color: white;
 }
-
-table {
-    margin: auto;
-}
-
-.button {
-    transition-duration: 0.4s;
-    background-color: white;
-    border-radius: 8px;
-    font-size: 16px;
-    border: none;
-    padding: 15px 32px;
-    text-align: center;
-    text-decoration: none;
-    display: inline-block;
-}
-
-.button:hover {
-    background-color: red;
+.modal-content {
+    background-color: #282828;
     color: white;
-}
-
-#movies td, #movies th {
-    border: 1px solid #ddd;
-    padding: 8px;
-}
-
-#movies tr:nth-child(even) {
-    background-color: #606060;
-}
-
-#movies tr:hover {
-    background-color: #ddd;
-    color: black;
-    padding: 10px;
-}
-
-#movies th {
-    padding-top: 12px;
-    padding-bottom: 12px;
-    text-align: left;
-    background-color: darkred;
-    color: white;
-    border-radius: 5px;
 }

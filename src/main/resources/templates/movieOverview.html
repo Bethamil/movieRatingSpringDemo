@@ -1,29 +1,64 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="https://www.thymeleaf.org">
-<head>
-    <meta charset="UTF-8">
+<head th:replace="fragments/general :: baseHeader(~{::title})">
     <title>Movie overview</title>
-    <link rel="stylesheet" href="/css/styling.css">
 </head>
 <body>
-<h1 >Movie overview</h1>
-<input style="margin-bottom: 30px" type="button" class="button" onclick="location.href='/movie/new';" value="Add new movie" />
-<table id="movies">
-    <tr>
-        <th>Titel</th>
-        <th>producer</th>
-        <th>Views</th>
-        <th>edit</th>
-        <th>delete</th>
-    </tr>
-    <tr th:each="movie : ${allMovies}">
-        <td th:text="${movie.title}"></td>
-        <td th:text="${movie.producerDisplayNames}"></td>
-        <td> <span th:text="${movie.getNumberOfViews()}"></span>  <a style="color: red" th:href="@{/view/new/{movieId}(movieId=${movie.movieId})}"> add View </a></td>
-        <td><a style="color: red" th:href="@{/movie/update/{movieId}(movieId=${movie.movieId})}"> edit </a></td>
-        <td><a style="color: red" th:href="@{/movie/delete/{movieId}(movieId=${movie.movieId})}"> delete </a></td>
+<div th:replace="fragments/general ::navbar"> <!-- header -->
+</div>
 
-    </tr>
-</table>
+<div class="container">
+    <h1>Movie overview</h1>
+    <input style="margin-bottom: 30px" type="button" class="button btn btn-danger" onclick="location.href='/movie/new';"
+           value="Add new movie"/>
+    <table id="movies" class="table table-dark thead-light table-striped">
+        <tr>
+            <th>Titel</th>
+            <th>producer</th>
+            <th>Views</th>
+            <th>edit</th>
+            <th>delete</th>
+        </tr>
+        <tr th:each="movie : ${allMovies}">
+            <td th:text="${movie.title}"></td>
+            <td th:text="${movie.producerDisplayNames}"></td>
+            <td><a th:text="${movie.getNumberOfViews()}" class="btn btn-danger"
+                   th:href="@{/view/new/{movieId}(movieId=${movie.movieId})}">
+            </a></td>
+            <td><a class="btn btn-danger" th:href="@{/movie/update/{movieId}(movieId=${movie.movieId})}"> edit </a></td>
+
+
+<td><!-- Button trigger modal -->
+    <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#exampleModal">
+        Delete
+    </button>
+    <!-- Modal -->
+    <div style="color: #282828" class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Delete</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body" th:text="'Do you want to delete '+ ${movie.title} +'?'">
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    <a class="btn btn-danger" th:href="@{/movie/delete/{movieId}(movieId=${movie.movieId})}"> delete </a>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</td>
+
+
+        </tr>
+    </table>
+</div>
+
+<div th:replace="fragments/general :: footer">
+</div>
+<div th:replace="fragments/general :: bottomScripts"></div>
 </body>
 </html>
