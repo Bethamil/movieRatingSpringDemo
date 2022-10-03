@@ -3,10 +3,10 @@
 <head th:replace="fragments/general :: baseHeader(~{::title})">
     <title>Movie Form</title>
 </head>
-<div th:replace="fragments/general :: navbar"></div>
+<div th:replace="fragments/general :: navbar('Add Movie')"></div>
 <body>
+
 <div class="container">
-<h1>add Movie</h1>
 <form th:action="@{/movie/new}" method="post" th:object="${movie}">
     <input  type="number" hidden  th:field="*{movieId}" />
     <table class="table table-dark thead-light table-striped" >

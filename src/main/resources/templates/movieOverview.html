@@ -4,20 +4,20 @@
     <title>Movie overview</title>
 </head>
 <body>
-<div th:replace="fragments/general ::navbar"> <!-- header -->
+<div th:replace="fragments/general ::navbar('Movie Overview')"> <!-- header -->
 </div>
 
 <div class="container">
-    <h1>Movie overview</h1>
-    <input style="margin-bottom: 30px" type="button" class="button btn btn-danger" onclick="location.href='/movie/new';"
+
+    <input style="margin: 30px" type="button" class="button btn btn-danger" onclick="location.href='/movie/new';"
            value="Add new movie"/>
     <table id="movies" class="table table-dark thead-light table-striped">
         <tr>
             <th>Titel</th>
             <th>producer</th>
-            <th>Views</th>
-            <th>edit</th>
-            <th>delete</th>
+            <th>views</th>
+            <th></th>
+            <th></th>
         </tr>
         <tr th:each="movie : ${allMovies}">
             <td th:text="${movie.title}"></td>
@@ -29,6 +29,7 @@
 
 
 <td><!-- Button trigger modal -->
+
     <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#exampleModal">
         Delete
     </button>
@@ -60,5 +61,7 @@
 <div th:replace="fragments/general :: footer">
 </div>
 <div th:replace="fragments/general :: bottomScripts"></div>
+<script type="text/javascript">
+</script>
 </body>
 </html>

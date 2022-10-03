@@ -8,10 +8,11 @@
 </head>
 <body>
 
-<div th:fragment="navbar"> <!-- Navigation bar -->
+<div th:fragment="navbar(titel)"> <!-- Navigation bar -->
+
     <nav class="navbar navbar-expand-md navbar-dark bg-dark n">
         <a class="navbar-brand" th:href="@{/movie/overview}">
-        <img src="/images/movie_logo.png" width="120" height="50" alt="">
+            <img src="/images/movie_logo.png" width="150" height="50" alt="" style="padding-left: 20px">
         </a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
                 aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
@@ -28,6 +29,18 @@
             </ul>
         </div>
     </nav>
+    <div>
+    <div><img style="position: relative" src="https://www.brunswickmoviebowl.com/wp-content/uploads/2016/06/movie-header.jpg" height="250"
+              width=100%>
+        <div  style=";background-color: #2C3034; padding: 10px; margin-bottom: 10px; position: center">
+            <h1 th:text="${titel}"></h1>
+        </div>
+    </div>
+    </div>
+
+
+
+
 </div>
 
 
