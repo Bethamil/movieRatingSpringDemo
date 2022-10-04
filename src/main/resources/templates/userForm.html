@@ -18,8 +18,8 @@
 
             <td>Username <input type="text" disabled th:field="*{username}"/></td>
 <!--            <td><span sec:authentication="name"></span></td>-->
-            <td>Password <input type="password" th:field="*{password}"></td>
-            <td><input class="btn btn-danger" style="padding: 10px 20px" type="submit" value="change password"></td>
+            <td>Password <input type="password" th:field="*{password}" required></td>
+            <td><input class="btn btn-danger" style="padding: 10px 20px" type="submit" value="change password" required></td>
         </form>
     </table>
 
@@ -30,8 +30,8 @@
                 <th></th>
                 <th></th>
             </tr>
-            <td>Username <input type="text" th:field="*{username}"/></td>
-            <td>Password <input type="password" th:field="*{password}"></td>
+            <td>Username <input type="text" th:field="*{username}" required/></td>
+            <td>Password <input type="password" th:field="*{password}" required></td>
             <td><input class="btn btn-danger" style="padding: 10px 20px" type="submit" value="Save new user"></td>
         </form>
     </table>
