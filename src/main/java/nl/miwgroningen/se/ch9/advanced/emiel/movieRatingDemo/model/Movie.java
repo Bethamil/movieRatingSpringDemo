@@ -4,7 +4,10 @@ import lombok.Getter;
 import lombok.Setter;
 
 import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 /**
  * @author Emiel Bloem
@@ -24,7 +27,7 @@ public class Movie {
     List<View> views;
 
     @ManyToMany
-    List<Producer> producers;
+    Set<Producer> producers = new HashSet<>();
 
     public int getNumberOfViews() {
         int count = 0;

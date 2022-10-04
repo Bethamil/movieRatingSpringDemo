@@ -58,6 +58,5 @@ public class ProducerController {
     protected String deleteMovie(@PathVariable Long producerId) {
         producerRepository.deleteById(producerId);
         return "redirect:/producer/overview";
-
     }
 }

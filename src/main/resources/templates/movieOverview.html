@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="https://www.thymeleaf.org">
+<html lang="en" xmlns:th="https://www.thymeleaf.org" xmlns:sec="https://www.thymeleaf.org">
 <head th:replace="fragments/general :: baseHeader(~{::title})">
     <title>Movie overview</title>
 </head>
@@ -8,51 +8,67 @@
 </div>
 
 <div class="container">
-
-    <input style="margin: 30px" type="button" class="button btn btn-danger" onclick="location.href='/movie/new';"
-           value="Add new movie"/>
+    <div sec:authorize="isAuthenticated()">
+        <input style="margin: 30px" type="button" class="button btn btn-danger" onclick="location.href='/movie/new';"
+               value="Add new movie"/>
+    </div>
     <table id="movies" class="table table-dark thead-light table-striped">
         <tr>
             <th>Titel</th>
             <th>producer</th>
             <th>views</th>
-            <th></th>
-            <th></th>
+
+            <div sec:authorize="isAuthenticated()">
+                <th></th>
+                <th></th>
+            </div>
         </tr>
         <tr th:each="movie : ${allMovies}">
             <td th:text="${movie.title}"></td>
             <td th:text="${movie.producerDisplayNames}"></td>
-            <td><a th:text="${movie.getNumberOfViews()}" class="btn btn-danger"
-                   th:href="@{/view/new/{movieId}(movieId=${movie.movieId})}">
-            </a></td>
-            <td><a class="btn btn-danger" th:href="@{/movie/update/{movieId}(movieId=${movie.movieId})}"> edit </a></td>
 
-
-<td><!-- Button trigger modal -->
-
-    <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#exampleModal">
-        Delete
-    </button>
-    <!-- Modal -->
-    <div style="color: #282828" class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Delete</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <div class="modal-body" th:text="'Do you want to delete '+ ${movie.title} +'?'">
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                    <a class="btn btn-danger" th:href="@{/movie/delete/{movieId}(movieId=${movie.movieId})}"> delete </a>
-
-                </div>
+            <div sec:authorize="isAnonymous">
+                <td><a th:text="${movie.getNumberOfViews()}" class="btn btn-danger disabled"
+                       th:href="@{/view/new/{movieId}(movieId=${movie.movieId})}">
             </div>
-        </div>
-    </div>
-</td>
 
+            <div sec:authorize="isAuthenticated()">
+                <td><a th:text="${movie.getNumberOfViews()}" class="btn btn-danger"
+                       th:href="@{/view/new/{movieId}(movieId=${movie.movieId})}">
+                </a></td>
+                <td><a class="btn btn-danger" th:href="@{/movie/update/{movieId}(movieId=${movie.movieId})}"> edit </a>
+                </td>
+
+
+                <td><!-- Button trigger modal -->
+
+                    <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                        Delete
+                    </button>
+                    <!-- Modal -->
+                    <div style="color: #282828" class="modal fade" id="exampleModal" tabindex="-1"
+                         aria-labelledby="exampleModalLabel" aria-hidden="true">
+                        <div class="modal-dialog">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title" id="exampleModalLabel">Delete</h5>
+                                    <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                            aria-label="Close"></button>
+                                </div>
+                                <div class="modal-body" th:text="'Do you want to delete '+ ${movie.title} +'?'">
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close
+                                    </button>
+                                    <a class="btn btn-danger"
+                                       th:href="@{/movie/delete/{movieId}(movieId=${movie.movieId})}"> delete </a>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </td>
+            </div>
 
         </tr>
     </table>
